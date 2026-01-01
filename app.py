@@ -14,31 +14,6 @@ st.set_page_config(
 )
 
 # ==================================================
-# MODE DETECTION (PUBLIC / OPERATOR)
-# ==================================================
-mode = st.query_params.get("mode", "public")
-is_operator_mode = mode == "operator"
-
-# ==================================================
-# OPERATOR PIN (SAFE FALLBACK)
-# ==================================================
-try:
-    OPERATOR_PIN = st.secrets["OPERATOR_PIN"]
-except Exception:
-    OPERATOR_PIN = "2580"  # fallback for local use
-
-is_operator_authenticated = False
-
-if is_operator_mode:
-    st.markdown("### 🔐 Operator Access")
-    entered_pin = st.text_input("Enter Operator PIN", type="password")
-    if entered_pin == OPERATOR_PIN:
-        is_operator_authenticated = True
-        st.success("Access granted")
-    elif entered_pin:
-        st.error("Incorrect PIN")
-
-# ==================================================
 # SESSION STATE DEFAULTS
 # ==================================================
 defaults = {
@@ -57,7 +32,7 @@ for k, v in defaults.items():
         st.session_state[k] = v
 
 # ==================================================
-# AUTO REFRESH (DRIVES LIVE UPDATES)
+# AUTO REFRESH
 # ==================================================
 st_autorefresh(
     interval=st.session_state.seconds_per_block * 1000,
@@ -83,9 +58,9 @@ SHEETS = [
 total_sheets = len(SHEETS)
 
 # ==================================================
-# MANUAL MODE – EVENT SELECTION (OPERATOR ONLY)
+# MANUAL MODE – EVENT SELECTION
 # ==================================================
-if is_operator_authenticated and st.session_state.manual_override:
+if st.session_state.manual_override:
     selected = st.selectbox(
         "Select Event (Manual Mode)",
         [s[0] for s in SHEETS],
@@ -106,7 +81,7 @@ if st.session_state.last_sheet_index != st.session_state.sheet_index:
 sheet_name, sheet_url = SHEETS[st.session_state.sheet_index]
 
 # ==================================================
-# LOAD DATA (LIVE)
+# LOAD DATA
 # ==================================================
 df = pd.read_csv(sheet_url, skiprows=9)
 df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
@@ -154,16 +129,30 @@ st.markdown(
         color: white;
         font-size:20px;
         font-weight:600;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .info-left { text-align:left; }
     .info-center { text-align:center; font-size:22px; font-weight:800; }
     .info-right { text-align:right; }
 
-    .stDataFrame td { font-size:18px; padding:10px; }
-    .stDataFrame th { font-size:19px; font-weight:700; padding:12px; }
+    .stDataFrame td {
+        font-size:18px;
+        padding:10px;
+    }
 
-    button[aria-label*="Download"] { display:none !important; }
+    .stDataFrame th {
+        font-size:19px;
+        font-weight:700;
+        padding:12px;
+        background:#e9effa;
+    }
+
+    /* Disable CSV download */
+    button[aria-label*="Download"],
+    button[title*="Download"] {
+        display:none !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -181,7 +170,7 @@ st.markdown(
     f"""
     <div class="info-bar">
         <div class="info-left">
-            ID: {start+1}–{min(end, total_rows)} of {total_rows}
+            Rows {start+1}–{min(end, total_rows)} of {total_rows}
         </div>
         <div class="info-center">
             {sheet_name}
@@ -205,27 +194,26 @@ st.dataframe(
 )
 
 # ==================================================
-# CONTROL PANEL (OPERATOR ONLY)
+# CONTROL PANEL (FONT MODE REMOVED)
 # ==================================================
-if is_operator_authenticated:
-    st.markdown("## 🎛️ Operator Control Panel")
+st.markdown("## 🎛️ Control Panel")
 
-    c1, c2, c3, c4, c5 = st.columns(5)
+c1, c2, c3, c4, c5 = st.columns(5)
 
-    with c1:
-        st.session_state.auto_scroll = st.toggle("Auto Scroll", st.session_state.auto_scroll)
+with c1:
+    st.session_state.auto_scroll = st.toggle("Auto Scroll", st.session_state.auto_scroll)
 
-    with c2:
-        st.session_state.manual_override = st.toggle("Manual Mode", st.session_state.manual_override)
+with c2:
+    st.session_state.manual_override = st.toggle("Manual Mode", st.session_state.manual_override)
 
-    with c3:
-        st.session_state.rows_per_block = st.slider("Rows per view", 5, 20, st.session_state.rows_per_block)
+with c3:
+    st.session_state.rows_per_block = st.slider("Rows per view", 5, 20, st.session_state.rows_per_block)
 
-    with c4:
-        st.session_state.seconds_per_block = st.slider("Seconds per view", 5, 30, st.session_state.seconds_per_block)
+with c4:
+    st.session_state.seconds_per_block = st.slider("Seconds per view", 5, 30, st.session_state.seconds_per_block)
 
-    with c5:
-        st.session_state.freeze = st.toggle("🛑 FREEZE", st.session_state.freeze)
+with c5:
+    st.session_state.freeze = st.toggle("🛑 FREEZE", st.session_state.freeze)
 
 # ==================================================
 # FOOTER
