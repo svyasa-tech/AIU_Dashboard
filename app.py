@@ -162,12 +162,26 @@ st.markdown(
 # ==================================================
 # HEADER
 # ==================================================
-st.image("assets/logo.svg", width=220)
+col_logo, col_title = st.columns([1, 6])
 
-st.markdown(
-    "<div class='top-title'>ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIPS</div>",
-    unsafe_allow_html=True
-)
+with col_logo:
+    st.image("assets/logo.png", width=220)
+
+with col_title:
+    st.markdown(
+        """
+        <div style="
+            display:flex;
+            align-items:center;
+            height:100%;
+            font-size:15px;
+            font-weight:600;
+        ">
+            ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIPS
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 st.markdown(
     f"""
