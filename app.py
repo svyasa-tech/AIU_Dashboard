@@ -174,7 +174,7 @@ with col_title:
             display:flex;
             align-items:center;
             height:100%;
-            font-size:33px;
+            font-size:36px;
             font-weight:600;
         ">
                 ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIPS
