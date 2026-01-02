@@ -164,10 +164,8 @@ st.markdown(
 # ==================================================
 st.markdown(
     """
-    <div style="text-align:center;">
-        <img src="assets/logo.svg"
-             alt="S-VYASA Logo"
-             style="max-width:220px; width:40%; height:auto;">
+    <div style="display:flex; justify-content:center; margin-top:10px;">
+        <img src="assets/logo.svg" style="width:220px;">
     </div>
     """,
     unsafe_allow_html=True
