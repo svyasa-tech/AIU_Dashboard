@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 from streamlit_autorefresh import st_autorefresh
 import math
+from zoneinfo import ZoneInfo
 
 # ==================================================
 # PAGE CONFIG
