@@ -177,7 +177,7 @@ with col_title:
             font-size:36px;
             font-weight:600;
         ">
-                ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIPS
+                ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIP
         </div>
         """,
         unsafe_allow_html=True
