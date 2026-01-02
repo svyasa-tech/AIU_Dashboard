@@ -170,7 +170,7 @@ st.markdown(
     f"""
     <div class="info-bar">
         <div class="info-left">
-            Rows {start+1}–{min(end, total_rows)} of {total_rows}
+            ID {start+1}–{min(end, total_rows)} of {total_rows}
         </div>
         <div class="info-center">
             {sheet_name}
