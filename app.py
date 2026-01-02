@@ -32,7 +32,7 @@ for k, v in defaults.items():
         st.session_state[k] = v
 
 # ==================================================
-# AUTO REFRESH (DRIVES EVERYTHING)
+# AUTO REFRESH
 # ==================================================
 st_autorefresh(
     interval=st.session_state.seconds_per_block * 1000,
@@ -148,6 +148,7 @@ st.markdown(
         background:#e9effa;
     }
 
+    /* Disable CSV download */
     button[aria-label*="Download"],
     button[title*="Download"] {
         display:none !important;
@@ -165,20 +166,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 🔑 Placeholder ensures live time update
-info_bar_placeholder = st.empty()
-
-info_bar_placeholder.markdown(
+st.markdown(
     f"""
     <div class="info-bar">
         <div class="info-left">
-            ID {start+1}–{min(end, total_rows)} of {total_rows}
+            Chest ID {start+1}–{min(end, total_rows)} of {total_rows}
         </div>
         <div class="info-center">
             {sheet_name}
         </div>
         <div class="info-right">
-            🕒 {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}
+            🕒 {datetime.now(ZoneInfo("Asia/Kolkata")).strftime('%d-%m-%Y %H:%M:%S')}
         </div>
     </div>
     """,
@@ -196,36 +194,26 @@ st.dataframe(
 )
 
 # ==================================================
-# CONTROL PANEL
+# CONTROL PANEL (FONT MODE REMOVED)
 # ==================================================
 st.markdown("## 🎛️ Control Panel")
 
 c1, c2, c3, c4, c5 = st.columns(5)
 
 with c1:
-    st.session_state.auto_scroll = st.toggle(
-        "Auto Scroll", st.session_state.auto_scroll
-    )
+    st.session_state.auto_scroll = st.toggle("Auto Scroll", st.session_state.auto_scroll)
 
 with c2:
-    st.session_state.manual_override = st.toggle(
-        "Manual Mode", st.session_state.manual_override
-    )
+    st.session_state.manual_override = st.toggle("Manual Mode", st.session_state.manual_override)
 
 with c3:
-    st.session_state.rows_per_block = st.slider(
-        "Rows per view", 5, 20, st.session_state.rows_per_block
-    )
+    st.session_state.rows_per_block = st.slider("Rows per view", 5, 20, st.session_state.rows_per_block)
 
 with c4:
-    st.session_state.seconds_per_block = st.slider(
-        "Seconds per view", 5, 30, st.session_state.seconds_per_block
-    )
+    st.session_state.seconds_per_block = st.slider("Seconds per view", 5, 30, st.session_state.seconds_per_block)
 
 with c5:
-    st.session_state.freeze = st.toggle(
-        "🛑 FREEZE", st.session_state.freeze
-    )
+    st.session_state.freeze = st.toggle("🛑 FREEZE", st.session_state.freeze)
 
 # ==================================================
 # FOOTER
