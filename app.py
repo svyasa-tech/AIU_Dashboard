@@ -165,7 +165,7 @@ st.markdown(
 col_logo, col_title = st.columns([1, 6])
 
 with col_logo:
-    st.image("assets/logo.png", width=220)
+    st.image("assets/logo.svg", width=220)
 
 with col_title:
     st.markdown(
