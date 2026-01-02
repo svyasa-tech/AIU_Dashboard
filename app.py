@@ -175,10 +175,16 @@ st.markdown(
         <div class="info-center">
             {sheet_name}
         </div>
-        <div class="info-right">
-            🕒 {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}
-        </div>
     </div>
+    """,
+    unsafe_allow_html=True
+)
+
+time_placeholder.markdown(
+    f"""
+    <p style="text-align:right; font-size:14px; margin-top:-6px; margin-right:12px;">
+        🕒 {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}
+    </p>
     """,
     unsafe_allow_html=True
 )
