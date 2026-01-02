@@ -163,6 +163,15 @@ st.markdown(
 # HEADER
 # ==================================================
 st.markdown(
+    """
+    <div style="text-align:center; margin-top:10px; margin-bottom:5px;">
+        <img src="https://www.svyasa.edu.in/path-to-logo.png" width="250px" alt="S-VYASA Logo">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
     "<div class='top-title'>ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIPS</div>",
     unsafe_allow_html=True
 )
