@@ -162,7 +162,16 @@ st.markdown(
 # ==================================================
 # HEADER
 # ==================================================
-st.image("assets/logo.svg", width=250)
+st.markdown(
+    """
+    <div style="text-align:center;">
+        <img src="assets/logo.svg"
+             alt="S-VYASA Logo"
+             style="max-width:220px; width:40%; height:auto;">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown(
     "<div class='top-title'>ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIPS</div>",
