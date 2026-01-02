@@ -162,14 +162,7 @@ st.markdown(
 # ==================================================
 # HEADER
 # ==================================================
-st.markdown(
-    """
-    <div style="display:flex; justify-content:center; margin-top:10px;">
-        <img src="assets/logo.svg" style="width:220px;">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+st.image("assets/logo.svg", width=220)
 
 st.markdown(
     "<div class='top-title'>ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIPS</div>",
