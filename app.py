@@ -180,7 +180,7 @@ with col_title:
             display:flex;
             align-items:center;
             height:100%;
-            font-size:36px;
+            font-size:26px;
             font-weight:600;
         ">
                 ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIP
@@ -188,6 +188,8 @@ with col_title:
         """,
         unsafe_allow_html=True
     )
+with col_qr:
+    st.image("assets/qrcode.png", width=120)
 
 st.markdown(
     f"""
