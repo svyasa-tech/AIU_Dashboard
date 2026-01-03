@@ -146,31 +146,12 @@ st.markdown(
 )
 
 # ==================================================
-# HEADER WITH LOGO + TITLE + QR
+# BANNER HEADER (REPLACEMENT)
 # ==================================================
-col_logo, col_title, col_qr = st.columns([1.2, 6, 1])
-
-with col_logo:
-    st.image("assets/logo.svg", width=200)
-
-with col_title:
-    st.markdown(
-        """
-        <div style="
-            display:flex;
-            align-items:center;
-            height:100%;
-            font-size:32px;
-            font-weight:600;
-        ">
-            ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIP
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with col_qr:
-    st.image("assets/qrcode.png", width=110)
+st.image(
+    "assets/banner.png",
+    use_container_width=True
+)
 
 # ==================================================
 # INFO BAR
