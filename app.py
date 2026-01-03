@@ -58,7 +58,7 @@ SHEETS = [
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"),
     ("Artistic: Arjuna-Stage 6",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
-    ("Rhythmic: Nakula-Stage-7",
+    ("Rhythmic: Nakula-Stage 7",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
 ]
 
@@ -117,14 +117,6 @@ if st.session_state.auto_scroll and not st.session_state.freeze:
 st.markdown(
     """
     <style>
-    .top-title {
-        text-align:center;
-        font-size:15px;
-        font-weight:600;
-        margin-top:-8px;
-        margin-bottom:10px;
-    }
-
     .info-bar {
         display:grid;
         grid-template-columns: 1fr 2fr 1fr;
@@ -143,35 +135,23 @@ st.markdown(
     .info-center { text-align:center; font-size:22px; font-weight:800; }
     .info-right { text-align:right; }
 
-    .stDataFrame td {
-        font-size:18px;
-        padding:10px;
-    }
+    .stDataFrame td { font-size:18px; padding:10px; }
+    .stDataFrame th { font-size:19px; font-weight:700; padding:12px; background:#e9effa; }
 
-    .stDataFrame th {
-        font-size:19px;
-        font-weight:700;
-        padding:12px;
-        background:#e9effa;
-    }
-
-    /* Disable CSV download */
     button[aria-label*="Download"],
-    button[title*="Download"] {
-        display:none !important;
-    }
+    button[title*="Download"] { display:none !important; }
     </style>
     """,
     unsafe_allow_html=True
 )
 
 # ==================================================
-# HEADER
+# HEADER WITH LOGO + TITLE + QR
 # ==================================================
-col_logo, col_title = st.columns([1, 6])
+col_logo, col_title, col_qr = st.columns([1.2, 6, 1])
 
 with col_logo:
-    st.image("assets/logo.svg", width=220)
+    st.image("assets/logo.svg", width=200)
 
 with col_title:
     st.markdown(
@@ -183,14 +163,18 @@ with col_title:
             font-size:26px;
             font-weight:600;
         ">
-                ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIP
+            ALL INDIA INTER-UNIVERSITY YOGASANA CHAMPIONSHIP
         </div>
         """,
         unsafe_allow_html=True
     )
-with col_qr:
-    st.image("assets/qrcode.png", width=120)
 
+with col_qr:
+    st.image("assets/qrcode.png", width=110)
+
+# ==================================================
+# INFO BAR
+# ==================================================
 st.markdown(
     f"""
     <div class="info-bar">
@@ -219,7 +203,7 @@ st.dataframe(
 )
 
 # ==================================================
-# CONTROL PANEL (FONT MODE REMOVED)
+# CONTROL PANEL
 # ==================================================
 st.markdown("## 🎛️ Control Panel")
 
@@ -227,16 +211,12 @@ c1, c2, c3, c4, c5 = st.columns(5)
 
 with c1:
     st.session_state.auto_scroll = st.toggle("Auto Scroll", st.session_state.auto_scroll)
-
 with c2:
     st.session_state.manual_override = st.toggle("Manual Mode", st.session_state.manual_override)
-
 with c3:
     st.session_state.rows_per_block = st.slider("Rows per view", 5, 20, st.session_state.rows_per_block)
-
 with c4:
     st.session_state.seconds_per_block = st.slider("Seconds per view", 5, 30, st.session_state.seconds_per_block)
-
 with c5:
     st.session_state.freeze = st.toggle("🛑 FREEZE", st.session_state.freeze)
 
