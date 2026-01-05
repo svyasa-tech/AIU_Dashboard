@@ -46,19 +46,19 @@ st_autorefresh(
 SHEET_ID = "18N4NcpXgFdk0tMLxSNSbZAUgnTQBZWWBLdCy_DPL_Nc"
 
 SHEETS = [
-    ("Team Traditional: Rig Veda-Stage 1",
+    ("Team Traditional: Rig Veda",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=41081876"),
-    ("Team Traditional: Sama Veda-Stage 2",
+    ("Team Traditional: Yajur Veda",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=816295636"),
-    ("Team Traditional: Yajur Veda-Stage 3",
+    ("Team Traditional: Sama Veda",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=828918708"),
-    ("Team Traditional: Atharva Veda-Stage 4",
+    ("Team Traditional: Atharva Veda",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=96540094"),
-    ("Individual Traditional: Eklavya-Stage 5",
+    ("Individual Traditional: Eklavya",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"),
-    ("Artistic: Arjuna-Stage 6",
+    ("Artistic: Arjuna",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
-    ("Rhythmic: Nakula-Stage 7",
+    ("Rhythmic: Nakula",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
 ]
 
