@@ -94,18 +94,23 @@ df = pd.read_csv(sheet_url, skiprows=9)
 df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
 df = df.dropna(how="all").reset_index(drop=True)
 
-# Remove line breaks inside cells/headers
+# Remove line breaks from cells and headers
 df = df.replace(r'[\r\n]+', ' ', regex=True)
 
 # ==================================================
-# 🔥 SORT BY TOTAL (DESCENDING – FINAL)
+# ✅ FILTER + SORT LOGIC (ONLY NEW FEATURE)
 # ==================================================
 if "Total" in df.columns:
     df["Total"] = pd.to_numeric(df["Total"], errors="coerce")
+
+    # Show only rows where Total > 0
+    df = df[df["Total"] > 0]
+
+    # Sort by Total in descending order
     df = df.sort_values(
         by="Total",
-        ascending=False,      # 🔥 DESCENDING
-        na_position="last"    # blanks always at bottom
+        ascending=False,
+        na_position="last"
     ).reset_index(drop=True)
 
 # ==================================================
@@ -216,7 +221,7 @@ st.markdown(
 )
 
 # ==================================================
-# TABLE
+# TABLE (HTML)
 # ==================================================
 st.markdown(
     block_df.to_html(index=False),
