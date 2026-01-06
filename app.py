@@ -93,16 +93,18 @@ sheet_name, sheet_url = SHEETS[st.session_state.sheet_index]
 df = pd.read_csv(sheet_url, skiprows=9)
 df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
 df = df.dropna(how="all").reset_index(drop=True)
-
-# Remove line breaks inside cells/headers
 df = df.replace(r'[\r\n]+', ' ', regex=True)
 
 # ==================================================
-# 🔥 ONLY NEW FEATURE: SORT BY "Total" (ASCENDING)
+# ✅ CORRECT ASCENDING SORT BY TOTAL
 # ==================================================
 if "Total" in df.columns:
     df["Total"] = pd.to_numeric(df["Total"], errors="coerce")
-    df = df.sort_values(by="Total", ascending=True)
+    df = df.sort_values(
+        by="Total",
+        ascending=True,
+        na_position="last"
+    ).reset_index(drop=True)
 
 # ==================================================
 # AUTO SCROLL LOGIC
@@ -122,7 +124,7 @@ if st.session_state.auto_scroll and not st.session_state.freeze:
             st.session_state.sheet_index = (st.session_state.sheet_index + 1) % total_sheets
 
 # ==================================================
-# STYLES (UNCHANGED)
+# STYLES
 # ==================================================
 st.markdown(
     """
@@ -148,10 +150,7 @@ st.markdown(
         font-weight:900;
     }
 
-    table {
-        width:100%;
-        border-collapse:collapse;
-    }
+    table { width:100%; border-collapse:collapse; }
 
     th {
         font-size:28px;
@@ -160,7 +159,6 @@ st.markdown(
         padding:18px;
         border:1px solid #cbd5e1;
         text-align:center;
-        white-space:nowrap;
     }
 
     td {
@@ -169,7 +167,6 @@ st.markdown(
         padding:16px;
         border:1px solid #e2e8f0;
         text-align:center;
-        white-space:nowrap;
     }
 
     th:nth-child(2),
@@ -179,9 +176,7 @@ st.markdown(
         white-space:normal;
     }
 
-    tr:nth-child(even) {
-        background:#f1f5f9;
-    }
+    tr:nth-child(even) { background:#f1f5f9; }
     </style>
     """,
     unsafe_allow_html=True
@@ -190,10 +185,7 @@ st.markdown(
 # ==================================================
 # BANNER
 # ==================================================
-st.image(
-    "assets/banner.png",
-    use_container_width=True
-)
+st.image("assets/banner.png", use_container_width=True)
 
 # ==================================================
 # INFO BAR
@@ -212,12 +204,9 @@ st.markdown(
 )
 
 # ==================================================
-# TABLE (HTML)
+# TABLE
 # ==================================================
-st.markdown(
-    block_df.to_html(index=False),
-    unsafe_allow_html=True
-)
+st.markdown(block_df.to_html(index=False), unsafe_allow_html=True)
 
 # ==================================================
 # CONTROL PANEL
