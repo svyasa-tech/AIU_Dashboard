@@ -112,7 +112,7 @@ if st.session_state.auto_scroll and not st.session_state.freeze:
             st.session_state.sheet_index = (st.session_state.sheet_index + 1) % total_sheets
 
 # ==================================================
-# STYLES
+# STYLES  🔥 ONLY FONT SIZE INCREASED
 # ==================================================
 st.markdown(
     """
@@ -135,18 +135,32 @@ st.markdown(
     .info-center { text-align:center; font-size:22px; font-weight:800; }
     .info-right { text-align:right; }
 
-    .stDataFrame td { font-size:18px; padding:10px; }
-    .stDataFrame th { font-size:19px; font-weight:700; padding:12px; background:#e9effa; }
+    /* ✅ ONLY VALID WAY TO INCREASE th & td IN st.dataframe */
+    div[data-testid="stDataFrame"] {
+        font-size:22px !important;   /* td size */
+    }
+
+    div[data-testid="stDataFrame"] th {
+        font-size:24px !important;   /* th size */
+        font-weight:800 !important;
+    }
+
+    div[data-testid="stDataFrame"] td {
+        font-size:22px !important;
+        font-weight:600;
+    }
 
     button[aria-label*="Download"],
-    button[title*="Download"] { display:none !important; }
+    button[title*="Download"] {
+        display:none !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
 
 # ==================================================
-# BANNER HEADER (REPLACEMENT)
+# BANNER
 # ==================================================
 st.image(
     "assets/banner.png",
@@ -174,7 +188,7 @@ st.markdown(
 )
 
 # ==================================================
-# TABLE
+# TABLE (UNCHANGED)
 # ==================================================
 st.dataframe(
     block_df,
