@@ -88,17 +88,20 @@ if st.session_state.last_sheet_index != st.session_state.sheet_index:
 sheet_name, sheet_url = SHEETS[st.session_state.sheet_index]
 
 # ==================================================
-# LOAD DATA
+# LOAD DATA (CLEANED)
 # ==================================================
 df = pd.read_csv(sheet_url, skiprows=9)
 df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
 df = df.dropna(how="all").reset_index(drop=True)
 
+# Remove line breaks from cells/headers
+df = df.replace(r'[\r\n]+', ' ', regex=True)
+
 total_rows = len(df)
 total_blocks = max(1, math.ceil(total_rows / st.session_state.rows_per_block))
 
 # ==================================================
-# AUTO SCROLL LOGIC
+# AUTO SCROLL
 # ==================================================
 start = st.session_state.block_index * st.session_state.rows_per_block
 end = start + st.session_state.rows_per_block
@@ -112,50 +115,72 @@ if st.session_state.auto_scroll and not st.session_state.freeze:
             st.session_state.sheet_index = (st.session_state.sheet_index + 1) % total_sheets
 
 # ==================================================
-# STYLES (ONLY SAFE & WORKING FONT INCREASE)
+# STYLES (ONLY FONT SIZE INCREASED)
 # ==================================================
 st.markdown(
     """
     <style>
+    body { background:#f8fafc; }
+
     .info-bar {
         display:grid;
         grid-template-columns: 1fr 2fr 1fr;
         align-items:center;
-        padding:10px 14px;
-        margin-bottom:8px;
-        border-radius:12px;
+        padding:16px 20px;
+        margin-bottom:14px;
+        border-radius:14px;
         background: linear-gradient(90deg, #1A3A8A, #2563EB, #4F8EDC);
         color:white;
-        font-size:20px;
+        font-size:26px;
+        font-weight:700;
+    }
+
+    .info-center {
+        text-align:center;
+        font-size:30px;
+        font-weight:900;
+    }
+
+    table {
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    /* 🔥 INCREASED HEADER SIZE */
+    th {
+        font-size:28px;          /* ⬅ increased */
+        font-weight:800;
+        background:#e9effa;
+        padding:18px;
+        border:1px solid #cbd5e1;
+        text-align:center;
+        white-space:nowrap;
+    }
+
+    /* 🔥 INCREASED CELL SIZE */
+    td {
+        font-size:26px;          /* ⬅ increased */
         font-weight:600;
-        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        padding:16px;
+        border:1px solid #e2e8f0;
+        text-align:center;
+        white-space:nowrap;
     }
 
-    .info-left { text-align:left; }
-    .info-center { text-align:center; font-size:22px; font-weight:800; }
-    .info-right { text-align:right; }
-
-    /* ✅ ONLY RELIABLE METHOD FOR st.dataframe FONT INCREASE */
-    div[data-testid="stDataFrame"] {
-        transform: scale(1.25);
-        transform-origin: top left;
+    /* SECOND COLUMN LEFT-ALIGNED */
+    th:nth-child(2),
+    td:nth-child(2) {
+        text-align:left !important;
+        padding-left:20px !important;
+        white-space:normal;
     }
 
-    button[aria-label*="Download"],
-    button[title*="Download"] {
-        display:none !important;
+    tr:nth-child(even) {
+        background:#f1f5f9;
     }
     </style>
     """,
     unsafe_allow_html=True
-)
-
-# ==================================================
-# BANNER
-# ==================================================
-st.image(
-    "assets/banner.png",
-    use_container_width=True
 )
 
 # ==================================================
@@ -164,13 +189,9 @@ st.image(
 st.markdown(
     f"""
     <div class="info-bar">
-        <div class="info-left">
-            {start+1}–{min(end, total_rows)} of {total_rows}
-        </div>
-        <div class="info-center">
-            {sheet_name}
-        </div>
-        <div class="info-right">
+        <div>{start+1}–{min(end, total_rows)} of {total_rows}</div>
+        <div class="info-center">{sheet_name}</div>
+        <div style="text-align:right">
             🕒 {datetime.now(ZoneInfo("Asia/Kolkata")).strftime('%d-%m-%Y %H:%M:%S')}
         </div>
     </div>
@@ -179,13 +200,11 @@ st.markdown(
 )
 
 # ==================================================
-# TABLE (UNCHANGED)
+# TABLE (HTML – SAME LOGIC)
 # ==================================================
-st.dataframe(
-    block_df,
-    use_container_width=True,
-    height=520,
-    hide_index=True
+st.markdown(
+    block_df.to_html(index=False),
+    unsafe_allow_html=True
 )
 
 # ==================================================
