@@ -65,7 +65,7 @@ SHEETS = [
 total_sheets = len(SHEETS)
 
 # ==================================================
-# MANUAL MODE – EVENT SELECTION
+# MANUAL MODE
 # ==================================================
 if st.session_state.manual_override:
     selected = st.selectbox(
@@ -98,7 +98,7 @@ total_rows = len(df)
 total_blocks = max(1, math.ceil(total_rows / st.session_state.rows_per_block))
 
 # ==================================================
-# AUTO ROW SCROLL LOGIC
+# AUTO SCROLL LOGIC
 # ==================================================
 start = st.session_state.block_index * st.session_state.rows_per_block
 end = start + st.session_state.rows_per_block
@@ -112,7 +112,7 @@ if st.session_state.auto_scroll and not st.session_state.freeze:
             st.session_state.sheet_index = (st.session_state.sheet_index + 1) % total_sheets
 
 # ==================================================
-# STYLES  🔥 ONLY FONT SIZE INCREASED
+# STYLES (ONLY SAFE & WORKING FONT INCREASE)
 # ==================================================
 st.markdown(
     """
@@ -125,29 +125,20 @@ st.markdown(
         margin-bottom:8px;
         border-radius:12px;
         background: linear-gradient(90deg, #1A3A8A, #2563EB, #4F8EDC);
-        color: white;
+        color:white;
         font-size:20px;
         font-weight:600;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
     }
 
     .info-left { text-align:left; }
     .info-center { text-align:center; font-size:22px; font-weight:800; }
     .info-right { text-align:right; }
 
-    /* ✅ ONLY VALID WAY TO INCREASE th & td IN st.dataframe */
+    /* ✅ ONLY RELIABLE METHOD FOR st.dataframe FONT INCREASE */
     div[data-testid="stDataFrame"] {
-        font-size:22px !important;   /* td size */
-    }
-
-    div[data-testid="stDataFrame"] th {
-        font-size:24px !important;   /* th size */
-        font-weight:800 !important;
-    }
-
-    div[data-testid="stDataFrame"] td {
-        font-size:22px !important;
-        font-weight:600;
+        transform: scale(1.25);
+        transform-origin: top left;
     }
 
     button[aria-label*="Download"],
