@@ -94,15 +94,22 @@ df = pd.read_csv(sheet_url, skiprows=9)
 df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
 df = df.dropna(how="all").reset_index(drop=True)
 
-# Remove line breaks from cells/headers
+# Remove line breaks inside cells/headers
 df = df.replace(r'[\r\n]+', ' ', regex=True)
 
+# ==================================================
+# 🔥 ONLY NEW FEATURE: SORT BY "Total" (ASCENDING)
+# ==================================================
+if "Total" in df.columns:
+    df["Total"] = pd.to_numeric(df["Total"], errors="coerce")
+    df = df.sort_values(by="Total", ascending=True)
+
+# ==================================================
+# AUTO SCROLL LOGIC
+# ==================================================
 total_rows = len(df)
 total_blocks = max(1, math.ceil(total_rows / st.session_state.rows_per_block))
 
-# ==================================================
-# AUTO SCROLL
-# ==================================================
 start = st.session_state.block_index * st.session_state.rows_per_block
 end = start + st.session_state.rows_per_block
 block_df = df.iloc[start:end]
@@ -115,7 +122,7 @@ if st.session_state.auto_scroll and not st.session_state.freeze:
             st.session_state.sheet_index = (st.session_state.sheet_index + 1) % total_sheets
 
 # ==================================================
-# STYLES (ONLY FONT SIZE LOGIC – UNCHANGED)
+# STYLES (UNCHANGED)
 # ==================================================
 st.markdown(
     """
@@ -147,7 +154,7 @@ st.markdown(
     }
 
     th {
-        font-size:22px;
+        font-size:28px;
         font-weight:800;
         background:#e9effa;
         padding:18px;
@@ -157,7 +164,7 @@ st.markdown(
     }
 
     td {
-        font-size:20px;
+        font-size:26px;
         font-weight:600;
         padding:16px;
         border:1px solid #e2e8f0;
@@ -181,7 +188,7 @@ st.markdown(
 )
 
 # ==================================================
-# BANNER (ADDED BACK)
+# BANNER
 # ==================================================
 st.image(
     "assets/banner.png",
@@ -205,7 +212,7 @@ st.markdown(
 )
 
 # ==================================================
-# TABLE (HTML – SAME LOGIC)
+# TABLE (HTML)
 # ==================================================
 st.markdown(
     block_df.to_html(index=False),
