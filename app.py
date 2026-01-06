@@ -147,7 +147,7 @@ st.markdown(
     }
 
     th {
-        font-size:28px;
+        font-size:22px;
         font-weight:800;
         background:#e9effa;
         padding:18px;
@@ -157,7 +157,7 @@ st.markdown(
     }
 
     td {
-        font-size:26px;
+        font-size:20px;
         font-weight:600;
         padding:16px;
         border:1px solid #e2e8f0;
