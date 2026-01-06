@@ -115,7 +115,7 @@ if st.session_state.auto_scroll and not st.session_state.freeze:
             st.session_state.sheet_index = (st.session_state.sheet_index + 1) % total_sheets
 
 # ==================================================
-# STYLES (ONLY FONT SIZE INCREASED)
+# STYLES (ONLY FONT SIZE LOGIC – UNCHANGED)
 # ==================================================
 st.markdown(
     """
@@ -146,9 +146,8 @@ st.markdown(
         border-collapse:collapse;
     }
 
-    /* 🔥 INCREASED HEADER SIZE */
     th {
-        font-size:28px;          /* ⬅ increased */
+        font-size:28px;
         font-weight:800;
         background:#e9effa;
         padding:18px;
@@ -157,9 +156,8 @@ st.markdown(
         white-space:nowrap;
     }
 
-    /* 🔥 INCREASED CELL SIZE */
     td {
-        font-size:26px;          /* ⬅ increased */
+        font-size:26px;
         font-weight:600;
         padding:16px;
         border:1px solid #e2e8f0;
@@ -167,7 +165,6 @@ st.markdown(
         white-space:nowrap;
     }
 
-    /* SECOND COLUMN LEFT-ALIGNED */
     th:nth-child(2),
     td:nth-child(2) {
         text-align:left !important;
@@ -181,6 +178,14 @@ st.markdown(
     </style>
     """,
     unsafe_allow_html=True
+)
+
+# ==================================================
+# BANNER (ADDED BACK)
+# ==================================================
+st.image(
+    "assets/banner.png",
+    use_container_width=True
 )
 
 # ==================================================
