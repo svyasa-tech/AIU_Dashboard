@@ -60,6 +60,9 @@ SHEETS = [
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
     ("Rhythmic: Nakula-Stage 7",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
+    ("Team Traditional: Finals",
+     f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=638516933"),
+    
 ]
 
 total_sheets = len(SHEETS)
