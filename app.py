@@ -45,7 +45,7 @@ st_autorefresh(
 # ==================================================
 SHEET_ID = "18N4NcpXgFdk0tMLxSNSbZAUgnTQBZWWBLdCy_DPL_Nc"
 
-'''SHEETS = [
+SHEETS = [
     ("Team Traditional: Rig Veda-Stage 1",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=41081876"),
     ("Team Traditional: Yajur Veda-Stage 2",
@@ -60,13 +60,13 @@ SHEET_ID = "18N4NcpXgFdk0tMLxSNSbZAUgnTQBZWWBLdCy_DPL_Nc"
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
     ("Rhythmic: Nakula-Stage 7",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
-]'''
-SHEETS = [
+]
+'''SHEETS = [
     ("Team Traditional: Finals",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=638516933"),
     ("Individual Traditional: Eklavya-Stage 5",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0")
-]
+]'''
 
 total_sheets = len(SHEETS)
 
