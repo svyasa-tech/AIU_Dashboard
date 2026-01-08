@@ -45,7 +45,7 @@ st_autorefresh(
 # ==================================================
 SHEET_ID = "18N4NcpXgFdk0tMLxSNSbZAUgnTQBZWWBLdCy_DPL_Nc"
 
-'''SHEETS = [
+SHEETS = [
     ("Team Traditional: Rig Veda-Stage 1",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=41081876"),
     ("Team Traditional: Yajur Veda-Stage 2",
@@ -60,14 +60,7 @@ SHEET_ID = "18N4NcpXgFdk0tMLxSNSbZAUgnTQBZWWBLdCy_DPL_Nc"
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
     ("Rhythmic: Nakula-Stage 7",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
-]'''
-SHEETS = [
-    ("Team Traditional: Finals",
-     f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=638516933"),
-    ("Individual Traditional: Eklavya-Stage 5",
-     f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"),
 ]
-    
 
 total_sheets = len(SHEETS)
 
@@ -111,12 +104,12 @@ if "Total" in df.columns:
     df["Total"] = pd.to_numeric(df["Total"], errors="coerce")
 
     # Show only rows where Total > 0
-    df = df[df["Total"] >= 0]
+    df = df[df["Total"] > 0]
 
     # Sort by Total in descending order
     df = df.sort_values(
-        by="Total",
-        ascending=False,
+        by="Rank",
+        ascending=True,
         na_position="last"
     ).reset_index(drop=True)
 
