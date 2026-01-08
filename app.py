@@ -107,7 +107,7 @@ if "Total" in df.columns:
     df["Total"] = pd.to_numeric(df["Total"], errors="coerce")
 
     # Show only rows where Total > 0
-    df = df[df["Total"] > 0]
+    df = df[df["Total"] >= 0]
 
     # Sort by Total in descending order
     df = df.sort_values(
