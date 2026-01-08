@@ -58,9 +58,8 @@ SHEETS = [
     # ("Team Traditional: Atharva Veda-Stage 4",
     #  f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=96540094"),
 
-    # ✅ Individual Traditional
-    ("Individual Traditional: Eklavya-Stage 5",
-     f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"),
+    # ("Individual Traditional: Eklavya-Stage 5",
+    #  f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"),
 
     # ("Artistic: Arjuna-Stage 6",
     #  f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
@@ -68,10 +67,11 @@ SHEETS = [
     # ("Rhythmic: Nakula-Stage 7",
     #  f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
 
-    # ✅ Team Traditional Finals
+    # ✅ ONLY ACTIVE SHEET
     ("Team Traditional: Finals",
      f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=638516933"),
 ]
+
 
 total_sheets = len(SHEETS)
 
