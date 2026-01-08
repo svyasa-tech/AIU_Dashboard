@@ -119,8 +119,8 @@ if "Total" in df.columns:
 
     # Sort by Total in descending order
     df = df.sort_values(
-        by="Rank",
-        ascending=True,
+        by="Total",
+        ascending=False,
         na_position="last"
     ).reset_index(drop=True)
 
