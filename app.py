@@ -64,8 +64,8 @@ SHEETS = [
     # ("Artistic: Arjuna-Stage 6",
     #  f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
 
-    # ("Rhythmic: Nakula-Stage 7",
-    #  f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
+    ("Rhythmic: Nakula-Stage 7",
+    f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
 
     # ✅ ONLY ACTIVE SHEET
     ("Team Traditional: Finals",
