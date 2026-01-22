@@ -61,8 +61,8 @@ SHEETS = [
     # ("Individual Traditional: Eklavya-Stage 5",
     #  f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"),
 
-    # ("Artistic: Arjuna-Stage 6",
-    #  f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
+    ("Artistic: Arjuna-Stage 6",
+    f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=1727603478"),
 
     ("Rhythmic: Nakula-Stage 7",
     f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=594759708"),
