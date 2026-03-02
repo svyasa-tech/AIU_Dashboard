@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 # PAGE CONFIG
 # ==================================================
 st.set_page_config(
-    page_title="Live Scores",
+    page_title="Live Yogasana Scores",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
