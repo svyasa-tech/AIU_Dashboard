@@ -261,6 +261,6 @@ with c5:
 # FOOTER
 # ==================================================
 st.markdown(
-    "<hr><p style='text-align:center; color:gray;'>© S-VYASA Deemed-to-be University | Association of Indian Universities</p>",
+    "<hr><p style='text-align:center; color:gray;'>Association of Indian Universities</p>",
     unsafe_allow_html=True
 )
